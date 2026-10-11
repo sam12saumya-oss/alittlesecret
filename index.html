@@ -154,12 +154,6 @@
 </head>
 
 <body class="bg-cute-polka antialiased text-deepslate selection:bg-pastelrose/30 selection:text-softmauve min-h-screen">
-
-  <!-- BACKGROUND MUSIC (2 States - Mast Magan) -->
-  <audio id="weddingMusic" loop preload="auto" playsinline>
-    <source src="https://archive.org/download/TeriMeriKahaaniGabbarIsBack320KbpsSongspk.name_201605/songs.pk03-2States-MastMagan.mp3" type="audio/mp3">
-  </audio>
-
   <!-- ELEGANT ENVELOPE OPENING OVERLAY -->
   <div id="revealOverlay" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/65 backdrop-blur-md select-none overflow-hidden">
     
@@ -240,17 +234,6 @@
       </a>
       
       <div class="flex items-center gap-2 sm:gap-3">
-        <!-- Audio Ambient Button -->
-        <button 
-          id="musicToggleBtn" 
-          onclick="toggleMusic()" 
-          class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-sans font-medium text-softmauve bg-white/90 border border-rosegold/30 hover:bg-pastelblush transition shadow-sm cursor-pointer"
-          title="Toggle Music"
-        >
-          <span id="musicIcon">🎵</span>
-          <span class="hidden sm:inline" id="musicLabel">Music</span>
-        </button>
-
         <button 
           onclick="replayEnvelope()" 
           class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-serif italic text-softmauve bg-white/90 border border-rosegold/30 hover:bg-pastelblush transition shadow-sm cursor-pointer"
@@ -701,10 +684,6 @@
     /* Google Sheets Webhook URL */
     const GOOGLE_SHEET_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbyxgyqJuVUzYLxg4kpR2ODEiUfKLzGbh7i88whQpxSwHbhMiUPulS3uZgGhRIUrxKrD/exec';
 
-    /* Music Playback Automation */
-    let isMusicPlaying = false;
-    const musicAudio = document.getElementById('weddingMusic');
-
     // Synthesized Web Audio chords fallback in case network stream is unavailable
     function playFallbackHarmonicChime() {
       try {
@@ -728,55 +707,6 @@
       } catch (err) {
         console.log("WebAudio note", err);
       }
-    }
-
-    function playAudioSafe() {
-      if (isMusicPlaying) return;
-      if (musicAudio) {
-        musicAudio.volume = 0.65;
-        const playPromise = musicAudio.play();
-        if (playPromise !== undefined) {
-          playPromise.then(() => {
-            isMusicPlaying = true;
-            updateMusicUI(true);
-            detachGestureTriggers();
-          }).catch((err) => {
-            console.log("Autoplay waiting for tap/interaction:", err);
-          });
-        }
-      }
-    }
-
-    function toggleMusic() {
-      if (!musicAudio) return;
-      if (isMusicPlaying) {
-        musicAudio.pause();
-        isMusicPlaying = false;
-        updateMusicUI(false);
-      } else {
-        musicAudio.play().then(() => {
-          isMusicPlaying = true;
-          updateMusicUI(true);
-        }).catch(() => {
-          playFallbackHarmonicChime();
-        });
-      }
-    }
-
-    function updateMusicUI(playing) {
-      const icon = document.getElementById('musicIcon');
-      const label = document.getElementById('musicLabel');
-      if (playing) {
-        if (icon) icon.innerText = '🔊';
-        if (label) label.innerText = 'Music Playing';
-      } else {
-        if (icon) icon.innerText = '🎵';
-        if (label) label.innerText = 'Play Music';
-      }
-    }
-
-    function onFirstUserGesture() {
-      playAudioSafe();
     }
 
     function attachGestureTriggers() {
