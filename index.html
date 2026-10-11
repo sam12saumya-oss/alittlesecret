@@ -155,12 +155,6 @@
 
 <body class="bg-cute-polka antialiased text-deepslate selection:bg-pastelrose/30 selection:text-softmauve min-h-screen">
 
-  <!-- BACKGROUND MUSIC (2 States - Romantic Theme) -->
-  <audio id="weddingMusic" loop preload="auto">
-    <!-- Mast Magan / Romantic 2 States Instrumental Audio Stream -->
-    <source src="https://ia801503.us.archive.org/15/items/mast-magan-2-states-instrumental/Mast%20Magan%20Instrumental.mp3" type="audio/mp3">
-  </audio>
-
   <!-- ELEGANT ENVELOPE OPENING OVERLAY -->
   <div id="revealOverlay" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/65 backdrop-blur-md select-none overflow-hidden">
     
@@ -172,17 +166,16 @@
         <!-- Interior Background Pocket -->
         <div class="absolute inset-2 bg-[#F7D2D8] rounded-xl z-0"></div>
 
-        <!-- Inner Letter Card -->
-        <div id="innerLetter" class="envelope-letter absolute inset-x-4 top-4 bottom-4 bg-[#FFFDFB] rounded-xl border border-rose-200/90 p-5 shadow-lg flex flex-col items-center justify-center text-center">
-          <div class="w-10 h-10 rounded-full border border-rosegold/50 bg-pastelblush flex items-center justify-center text-softmauve font-serif text-xs font-semibold mb-1">
+        <!-- Inner Letter Card: ONLY SHOWS "Together with our families" -->
+        <div id="innerLetter" class="envelope-letter absolute inset-x-4 top-4 bottom-4 bg-[#FFFDFB] rounded-xl border border-rose-200/90 p-6 shadow-lg flex flex-col items-center justify-center text-center">
+          <div class="w-11 h-11 rounded-full border border-rosegold/50 bg-pastelblush flex items-center justify-center text-softmauve font-serif text-xs font-semibold mb-3">
             H & S
           </div>
-          <h3 class="font-serif text-2xl text-softmauve font-normal tracking-wide">Harpreet & Saumya</h3>
-          <p class="font-cinzel text-[9px] uppercase tracking-[0.25em] text-rosegold font-bold mt-0.5">We Are Getting Married</p>
-          <div class="w-10 h-[1px] bg-rosegold/40 my-2"></div>
-          <p class="font-serif italic text-xs text-deepslate/80">
-            January 17 – 19, 2027 • Greater Noida
+          <div class="w-8 h-[1px] bg-rosegold/40 mb-3"></div>
+          <p class="font-cinzel text-xs sm:text-sm tracking-[0.28em] uppercase font-bold text-softmauve">
+            Together with our families
           </p>
+          <div class="w-8 h-[1px] bg-rosegold/40 mt-3"></div>
         </div>
 
         <!-- Envelope Flaps -->
@@ -195,6 +188,9 @@
         <div id="envelopeSecretText" class="absolute top-5 sm:top-6 inset-x-4 z-40 text-center pointer-events-none transition-all duration-300">
           <p class="font-serif italic text-xl sm:text-2xl text-white font-medium drop-shadow-[0_2px_6px_rgba(80,20,35,0.75)] tracking-wide">
             We've been keeping a little secret
+          </p>
+          <p class="font-cinzel text-[9px] text-white/90 uppercase tracking-[0.2em] mt-1 drop-shadow-sm font-semibold">
+            Tap wax seal to open
           </p>
         </div>
 
@@ -261,6 +257,7 @@
     </div>
   </header>
 
+  <!-- MAIN INVITATION DETAILS -->
   <main class="relative z-20 max-w-4xl mx-auto px-4 sm:px-6 pt-8 pb-20 space-y-16 sm:space-y-20">
 
     <!-- HERO SECTION -->
@@ -319,7 +316,7 @@
                 <path d="M166 95 Q169 93 172 95" stroke="#4A343D" stroke-width="2" stroke-linecap="round" fill="none"/>
                 <path d="M158 107 Q162 111 166 107" stroke="#D8878F" stroke-width="2" stroke-linecap="round" fill="none"/>
                 <circle cx="174" cy="103" r="3.5" fill="#F2B7AF" opacity="0.6"/>
-                <!-- Turban / Groom Regal Touch -->
+                <!-- Regal Groom Headwear -->
                 <path d="M140 92 C138 72, 160 66, 180 72 C188 78, 186 90, 184 94 C180 82, 162 76, 144 82 Z" fill="#C5A059"/>
               </g>
 
@@ -501,7 +498,7 @@
           </div>
         </div>
 
-        <!-- EVENT 2: RING CEREMONY / ENGAGEMENT (WITH VENUE DETAILS) -->
+        <!-- EVENT 2: RING CEREMONY / ENGAGEMENT -->
         <div class="bg-gradient-to-br from-white via-white to-[#FCF4EE] rounded-2xl p-6 border border-[#F2D7CB] card-elevated flex flex-col justify-between space-y-4 hover:-translate-y-1 transition duration-300">
           <div class="space-y-2">
             <div class="flex items-center justify-between">
@@ -514,7 +511,6 @@
             <p class="font-sans text-sm text-deepslate/80 leading-relaxed">
               Exchanging rings and promises surrounded by our dearest family and friends.
             </p>
-            <!-- Venue Info -->
             <div class="p-3 bg-white/80 rounded-xl border border-rose-200/50 mt-2 space-y-1 text-xs">
               <p class="font-semibold text-softmauve">📍 Venue:</p>
               <p class="text-deepslate/85 font-medium">The Wedding Planet</p>
@@ -554,7 +550,7 @@
           </div>
         </div>
 
-        <!-- EVENT 4: THE WEDDING (WITH VENUE DETAILS) -->
+        <!-- EVENT 4: THE WEDDING -->
         <div class="bg-gradient-to-br from-white via-white to-[#FAF0ED] rounded-2xl p-6 border border-rosegold/50 card-elevated flex flex-col justify-between space-y-4 hover:-translate-y-1 transition duration-300 relative overflow-hidden">
           <div class="space-y-2">
             <div class="flex items-center justify-between">
@@ -567,7 +563,6 @@
             <p class="font-sans text-sm text-deepslate/80 leading-relaxed">
               Sacred vows, pheres around the holy fire, and the celebration of our lifelong union.
             </p>
-            <!-- Venue Info -->
             <div class="p-3 bg-white/80 rounded-xl border border-rose-200/50 mt-2 space-y-1 text-xs">
               <p class="font-semibold text-softmauve">📍 Venue:</p>
               <p class="text-deepslate/85 font-medium">The Venue by SK</p>
@@ -695,46 +690,6 @@
     /* Google Sheets Webhook URL */
     const GOOGLE_SHEET_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbyxgyqJuVUzYLxg4kpR2ODEiUfKLzGbh7i88whQpxSwHbhMiUPulS3uZgGhRIUrxKrD/exec';
 
-    /* Music Playback Handling (2 States) */
-    let isMusicPlaying = false;
-    function playMusic() {
-      const audio = document.getElementById('weddingMusic');
-      if (audio) {
-        audio.play().then(() => {
-          isMusicPlaying = true;
-          updateMusicUI(true);
-        }).catch(e => {
-          console.log("Autoplay was prevented, user can toggle manually", e);
-        });
-      }
-    }
-
-    function toggleMusic() {
-      const audio = document.getElementById('weddingMusic');
-      if (!audio) return;
-      if (isMusicPlaying) {
-        audio.pause();
-        isMusicPlaying = false;
-        updateMusicUI(false);
-      } else {
-        audio.play();
-        isMusicPlaying = true;
-        updateMusicUI(true);
-      }
-    }
-
-    function updateMusicUI(playing) {
-      const icon = document.getElementById('musicIcon');
-      const label = document.getElementById('musicLabel');
-      if (playing) {
-        if (icon) icon.innerText = '🔊';
-        if (label) label.innerText = 'Music Playing';
-      } else {
-        if (icon) icon.innerText = '🎵';
-        if (label) label.innerText = 'Play Music';
-      }
-    }
-
     /* Envelope Opening Experience */
     function openEnvelopeLetter() {
       const sealWrapper = document.getElementById('sealWrapper');
@@ -742,9 +697,6 @@
       const letter = document.getElementById('innerLetter');
       const overlay = document.getElementById('revealOverlay');
       const secretText = document.getElementById('envelopeSecretText');
-
-      // Start music playback on user interaction
-      playMusic();
 
       // Step 1: Fade out seal and teaser text
       if (secretText) {
@@ -763,12 +715,12 @@
         if (flapTop) flapTop.classList.add('open');
       }, 150);
 
-      // Step 3: Slide out letter with delicate celebratory confetti
+      // Step 3: Slide out letter revealing "Together with our families"
       setTimeout(() => {
         if (letter) letter.classList.add('sliding-out');
         if (typeof confetti === 'function') {
           confetti({
-            particleCount: 55,
+            particleCount: 50,
             spread: 75,
             origin: { y: 0.55 },
             colors: ['#F5B6B0', '#DCE8DE', '#FBF2D5', '#EAA2AC', '#FFFFFF']
@@ -776,7 +728,7 @@
         }
       }, 550);
 
-      // Step 4: Fade overlay and reveal wedding invitation
+      // Step 4: Fade overlay and reveal complete wedding invitation
       setTimeout(() => {
         if (overlay) {
           overlay.classList.add('unveiled');
@@ -948,7 +900,7 @@
       document.getElementById('rsvpForm').classList.remove('hidden');
     }
 
-    /* Falling Petals Effect */
+    /* Falling Petals Particle Physics */
     function initPetals() {
       const canvas = document.getElementById('petalsCanvas');
       if (!canvas) return;
