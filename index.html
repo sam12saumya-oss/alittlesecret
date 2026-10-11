@@ -155,9 +155,9 @@
 
 <body class="bg-cute-polka antialiased text-deepslate selection:bg-pastelrose/30 selection:text-softmauve min-h-screen">
 
-  <!-- BACKGROUND MUSIC (2 States - Mast Magan Instrumental Soundtrack) -->
+  <!-- BACKGROUND MUSIC (2 States - Mast Magan) -->
   <audio id="weddingMusic" loop preload="auto" playsinline>
-    <source src="https://ia801503.us.archive.org/15/items/mast-magan-2-states-instrumental/Mast%20Magan%20Instrumental.mp3" type="audio/mp3">
+    <source src="https://archive.org/download/TeriMeriKahaaniGabbarIsBack320KbpsSongspk.name_201605/songs.pk03-2States-MastMagan.mp3" type="audio/mp3">
   </audio>
 
   <!-- ELEGANT ENVELOPE OPENING OVERLAY -->
@@ -235,7 +235,7 @@
       
       <a href="#" class="flex items-center gap-2">
         <span class="font-script text-2xl sm:text-3xl text-softmauve">
-          Harpreet & Saumya
+          H & S
         </span>
       </a>
       
@@ -563,19 +563,56 @@
       </div>
     </section>
 
-    <!-- RSVP SECTION -->
+    <!-- RSVP SECTION WITH ATTENDING / CAN'T MAKE IT -->
     <section id="rsvpSection" class="bg-white/95 rounded-3xl p-6 sm:p-10 border border-rosegold/30 card-elevated max-w-xl mx-auto space-y-6">
       
       <div class="text-center space-y-2">
         <span class="font-cinzel text-xs tracking-[0.25em] uppercase text-softgold font-bold">Kindly Respond</span>
         <h2 class="font-serif text-3xl text-softmauve">Will You Join Us?</h2>
         <p class="font-serif italic text-sm text-deepslate/75">
-          Please let us know so we can welcome you with open arms!
+          Please let us know so we can plan our celebration with you!
         </p>
       </div>
 
-      <form id="rsvpForm" onsubmit="handleRsvpSubmit(event)" class="space-y-4">
+      <form id="rsvpForm" onsubmit="handleRsvpSubmit(event)" class="space-y-5">
         
+        <!-- ATTENDANCE CHOICE (Will Attend / Can't Make It) -->
+        <div>
+          <label class="block font-sans text-xs font-semibold text-softmauve uppercase tracking-wider mb-2">
+            Will you be attending? <span class="text-dustyrose">*</span>
+          </label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="cursor-pointer">
+              <input 
+                type="radio" 
+                name="attendance" 
+                value="attending" 
+                checked 
+                onchange="handleAttendanceChange(this.value)"
+                class="peer sr-only"
+              />
+              <div class="p-3 rounded-xl border border-rosegold/40 bg-pastelblush/40 text-center peer-checked:bg-gradient-to-r peer-checked:from-dustyrose peer-checked:to-softmauve peer-checked:text-white peer-checked:border-transparent transition-all shadow-sm">
+                <span class="block text-base mb-0.5">🥂</span>
+                <span class="font-sans text-xs font-semibold">I'll Be There!</span>
+              </div>
+            </label>
+
+            <label class="cursor-pointer">
+              <input 
+                type="radio" 
+                name="attendance" 
+                value="not_attending" 
+                onchange="handleAttendanceChange(this.value)"
+                class="peer sr-only"
+              />
+              <div class="p-3 rounded-xl border border-rosegold/40 bg-pastelblush/40 text-center peer-checked:bg-stone-700 peer-checked:text-white peer-checked:border-transparent transition-all shadow-sm">
+                <span class="block text-base mb-0.5">🤍</span>
+                <span class="font-sans text-xs font-semibold">Can't Make It</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
         <div>
           <label for="guestName" class="block font-sans text-xs font-semibold text-softmauve uppercase tracking-wider mb-1.5">
             Your Full Name <span class="text-dustyrose">*</span>
@@ -604,12 +641,12 @@
 
         <div>
           <label for="guestWish" class="block font-sans text-xs font-semibold text-softmauve uppercase tracking-wider mb-1.5">
-            Wish or Blessing for the Couple <span class="text-gray-400 font-normal lowercase">(optional)</span>
+            Wish or Blessing for Harpreet & Saumya <span class="text-gray-400 font-normal lowercase">(optional)</span>
           </label>
           <textarea 
             id="guestWish" 
             rows="3" 
-            placeholder="Write a heartfelt blessing for Harpreet & Saumya..." 
+            placeholder="Write a sweet note or blessing for the couple..." 
             class="w-full px-4 py-2.5 rounded-xl border border-rosegold/30 text-sm font-sans focus:outline-none focus:ring-2 focus:ring-dustyrose/30 focus:border-dustyrose transition bg-pastelblush/40 resize-none"
           ></textarea>
         </div>
@@ -619,19 +656,19 @@
           id="rsvpSubmitBtn" 
           class="w-full py-3.5 rounded-xl text-sm font-sans font-semibold tracking-wider uppercase text-white bg-gradient-to-r from-dustyrose via-softmauve to-dustyrose hover:opacity-95 transition-all shadow-sm hover:shadow-md active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer"
         >
-          <span id="rsvpBtnText">I'll Be There! 💌</span>
+          <span id="rsvpBtnText">Send RSVP 💌</span>
           <span id="rsvpSpinner" class="hidden animate-spin">⏳</span>
         </button>
 
       </form>
 
       <div id="rsvpSuccessCard" class="hidden text-center py-6 space-y-4">
-        <div class="w-16 h-16 rounded-full bg-pastelblush border border-rosegold/40 text-softmauve text-2xl flex items-center justify-center mx-auto">
+        <div id="successIcon" class="w-16 h-16 rounded-full bg-pastelblush border border-rosegold/40 text-softmauve text-2xl flex items-center justify-center mx-auto">
           🥂
         </div>
         <div class="space-y-1">
           <h3 class="font-serif text-2xl text-softmauve">Thank You, <span id="confirmedGuestName">Friend</span>!</h3>
-          <p class="font-serif italic text-sm text-deepslate/80">
+          <p id="confirmedStatusMsg" class="font-serif italic text-sm text-deepslate/80">
             We can't wait to celebrate with you!
           </p>
         </div>
@@ -668,21 +705,45 @@
     let isMusicPlaying = false;
     const musicAudio = document.getElementById('weddingMusic');
 
-    function playAudioSafe() {
-      if (!musicAudio || isMusicPlaying) return;
-      musicAudio.volume = 0.65;
-      const promise = musicAudio.play();
-      if (promise !== undefined) {
-        promise.then(() => {
-          isMusicPlaying = true;
-          updateMusicUI(true);
-          // Remove listener once played
-          document.removeEventListener('click', playAudioSafe);
-          document.removeEventListener('touchstart', playAudioSafe);
-          document.removeEventListener('scroll', playAudioSafe);
-        }).catch((err) => {
-          console.log("Autoplay waiting for initial gesture:", err);
+    // Synthesized Web Audio chords fallback in case network stream is unavailable
+    function playFallbackHarmonicChime() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        const freqs = [523.25, 659.25, 783.99, 987.77, 1046.50];
+        freqs.forEach((freq, i) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, ctx.currentTime + (i * 0.08));
+          gain.gain.setValueAtTime(0, ctx.currentTime + (i * 0.08));
+          gain.gain.linearRampToValueAtTime(0.08, ctx.currentTime + (i * 0.08) + 0.03);
+          gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + (i * 0.08) + 1.8);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(ctx.currentTime + (i * 0.08));
+          osc.stop(ctx.currentTime + (i * 0.08) + 1.9);
         });
+      } catch (err) {
+        console.log("WebAudio note", err);
+      }
+    }
+
+    function playAudioSafe() {
+      if (isMusicPlaying) return;
+      if (musicAudio) {
+        musicAudio.volume = 0.65;
+        const playPromise = musicAudio.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            isMusicPlaying = true;
+            updateMusicUI(true);
+            detachGestureTriggers();
+          }).catch((err) => {
+            console.log("Autoplay waiting for tap/interaction:", err);
+          });
+        }
       }
     }
 
@@ -693,9 +754,12 @@
         isMusicPlaying = false;
         updateMusicUI(false);
       } else {
-        musicAudio.play();
-        isMusicPlaying = true;
-        updateMusicUI(true);
+        musicAudio.play().then(() => {
+          isMusicPlaying = true;
+          updateMusicUI(true);
+        }).catch(() => {
+          playFallbackHarmonicChime();
+        });
       }
     }
 
@@ -711,15 +775,25 @@
       }
     }
 
-    // Attempt playback immediately when URL is hit
+    function onFirstUserGesture() {
+      playAudioSafe();
+    }
+
+    function attachGestureTriggers() {
+      document.addEventListener('click', onFirstUserGesture, { once: true });
+      document.addEventListener('touchstart', onFirstUserGesture, { once: true });
+      document.addEventListener('scroll', onFirstUserGesture, { once: true });
+    }
+
+    function detachGestureTriggers() {
+      document.removeEventListener('click', onFirstUserGesture);
+      document.removeEventListener('touchstart', onFirstUserGesture);
+      document.removeEventListener('scroll', onFirstUserGesture);
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       playAudioSafe();
-
-      // Fallback listeners on initial gesture anywhere on screen
-      document.addEventListener('click', playAudioSafe, { once: true });
-      document.addEventListener('touchstart', playAudioSafe, { once: true });
-      document.addEventListener('scroll', playAudioSafe, { once: true });
-
+      attachGestureTriggers();
       initPetals();
     });
 
@@ -731,8 +805,9 @@
       const overlay = document.getElementById('revealOverlay');
       const secretText = document.getElementById('envelopeSecretText');
 
-      // Ensure music is active
+      // Immediate audio trigger on explicit button tap
       playAudioSafe();
+      playFallbackHarmonicChime();
 
       // Step 1: Fade out seal and teaser text
       if (secretText) {
@@ -810,6 +885,18 @@
       }
     }
 
+    /* Attendance Toggle Button Label Update */
+    let selectedAttendance = 'attending';
+    function handleAttendanceChange(val) {
+      selectedAttendance = val;
+      const btnText = document.getElementById('rsvpBtnText');
+      if (val === 'not_attending') {
+        if (btnText) btnText.innerText = "Send Warm Wishes 🤍";
+      } else {
+        if (btnText) btnText.innerText = "I'll Be There! 💌";
+      }
+    }
+
     /* RSVP Submission */
     function handleRsvpSubmit(e) {
       e.preventDefault();
@@ -831,10 +918,13 @@
       if (spinner) spinner.classList.remove('hidden');
       if (btnText) btnText.innerText = 'Recording...';
 
+      const isAttending = selectedAttendance === 'attending';
+
       const rsvpData = {
         timestamp: new Date().toISOString(),
         name: name,
         phone: phone,
+        attendance: isAttending ? "Attending" : "Can't make it",
         wish: wish,
         date: "January 17 – 19, 2027"
       };
@@ -857,7 +947,7 @@
       }
 
       setTimeout(() => {
-        if (typeof confetti === 'function') {
+        if (isAttending && typeof confetti === 'function') {
           confetti({
             particleCount: 90,
             spread: 90,
@@ -870,6 +960,17 @@
         const successCard = document.getElementById('rsvpSuccessCard');
         successCard.classList.remove('hidden');
         document.getElementById('confirmedGuestName').innerText = name;
+
+        const successIcon = document.getElementById('successIcon');
+        const statusMsg = document.getElementById('confirmedStatusMsg');
+
+        if (isAttending) {
+          if (successIcon) successIcon.innerText = "🥂";
+          if (statusMsg) statusMsg.innerText = "We can't wait to celebrate our special days with you!";
+        } else {
+          if (successIcon) successIcon.innerText = "🤍";
+          if (statusMsg) statusMsg.innerText = "You will be dearly missed, but we are grateful for your heartfelt blessings!";
+        }
 
         const wishBox = document.getElementById('confirmedWishBox');
         const wishText = document.getElementById('confirmedWishText');
@@ -885,7 +986,7 @@
         if (wishInput) wishInput.value = '';
         submitBtn.disabled = false;
         if (spinner) spinner.classList.add('hidden');
-        if (btnText) btnText.innerText = "I'll Be There! 💌";
+        if (btnText) btnText.innerText = isAttending ? "I'll Be There! 💌" : "Send Warm Wishes 🤍";
       }, 500);
     }
 
