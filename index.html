@@ -159,6 +159,41 @@
     .card-elevated {
       box-shadow: 0 16px 40px -12px rgba(180, 110, 125, 0.15), 0 4px 16px rgba(0, 0, 0, 0.02);
     }
+    /* Staggered entrance animations */
+  @keyframes slideUpFade {
+  0% {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-slide-1 {
+  animation: slideUpFade 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+.hero-slide-2 {
+  animation: slideUpFade 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.45s;
+  opacity: 0;
+}
+
+.hero-slide-3 {
+  animation: slideUpFade 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.7s;
+  opacity: 0;
+}
+
+.hero-slide-4 {
+  animation: slideUpFade 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.95s;
+  opacity: 0;
+}
   </style>
 </head>
 
@@ -272,7 +307,7 @@
     <!-- HERO SECTION -->
     <section class="text-center pt-4 sm:pt-6 space-y-6">
       <!-- Romantic Quote -->
-      <div class="max-w-xl mx-auto px-4 space-y-2">
+      <div class="max-w-xl mx-auto px-4 space-y-2 hero-slide-1">
         <p class="font-serif italic text-xl sm:text-2xl text-dustyrose font-normal">
           We waited for the right moment... and then it happened.
         </p>
@@ -280,13 +315,13 @@
 
       <!-- Main Headline -->
       <div class="space-y-3">
-        <h2 class="font-cinzel text-xs sm:text-sm tracking-[0.3em] uppercase text-softgold font-semibold">
+        <h2 class="hero-slide-2 font-cinzel text-xs sm:text-sm tracking-[0.3em] uppercase text-softgold font-semibold">
           Cheers to the new beginning
         </h2>
-        <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl text-softmauve font-light leading-tight tracking-wide">
+        <h1 class="hero-slide-3 font-serif text-4xl sm:text-5xl md:text-6xl text-softmauve font-light leading-tight tracking-wide">
           Harpreet & Saumya
         </h1>
-        <p class="font-serif text-lg sm:text-2xl text-deepslate/80 font-medium">
+        <p class="hero-slide-4 font-serif text-lg sm:text-2xl text-deepslate/80 font-medium">
           We Are Getting Married! 🥂💍
         </p>
       </div>
