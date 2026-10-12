@@ -164,6 +164,10 @@
 
 <body class="bg-cute-polka antialiased text-deepslate selection:bg-pastelrose/30 selection:text-softmauve min-h-screen">
 
+  <!-- Wedding background music: place the MP3 in the same folder as this HTML file -->
+  <audio id="weddingMusic" src="mangalyam.mp3" preload="auto" autoplay loop></audio>
+
+
   <!-- ELEGANT ENVELOPE OPENING OVERLAY -->
   <div id="revealOverlay" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/70 backdrop-blur-md select-none overflow-hidden">
     
@@ -663,7 +667,22 @@
     /* Envelope Opening Experience */
     let envelopeOpening = false;
 
+    function startWeddingMusic() {
+      const music = document.getElementById('weddingMusic');
+      if (!music) return;
+      music.volume = 0.65;
+      if (music.paused) {
+        const playAttempt = music.play();
+        if (playAttempt && typeof playAttempt.catch === 'function') {
+          playAttempt.catch(() => {
+            // Autoplay can be blocked by the browser; the envelope click retries playback.
+          });
+        }
+      }
+    }
+
     function openEnvelopeLetter() {
+      startWeddingMusic(); // The seal click is a user gesture, so playback can begin here.
       if (envelopeOpening) return;
       envelopeOpening = true;
 
@@ -931,6 +950,10 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       initPetals();
+      startWeddingMusic(); // Try immediately when the invitation URL loads.
+      // Retry on the first user interaction if autoplay was blocked.
+      document.addEventListener('pointerdown', startWeddingMusic, { once: true });
+      document.addEventListener('keydown', startWeddingMusic, { once: true });
     });
   </script>
 </body>
